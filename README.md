@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+## Zad 1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Utworz komponent ProfileList ktory przez propsy otrzymuje liste profili - dzieki jednej z metod tablicowych zostaja wyswietlone elementy listy z komponentem Profile (pamietamy, ze elementy listy musza zawierac tag <li>)
 
-## Available Scripts
+## Zad 5
 
-In the project directory, you can run:
+Zadanie 3
+Utworz komponent ProfileForm
 
-### `npm start`
+- bedzie zawieral formularz ktory bedzie nam pobierac informacje o pojedynczym profilu
+- po zatwierdzeniu przyciskiem "Dodaj" powinien on dodac nam element do listy
+- lista profili powinna w tym zadaniu zostac przechowywana w stanie (stan utworzony w App.tsx)
+- Funkcja ktora dodaje element do tablicy powinna zostac utworzona w App.tsx, nastepnie przekazana przez props do ProfileForm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Zad 6
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Utworz przycisk do usuwania elementu z listy
 
-### `npm test`
+- znajdowac on sie bedzie na gorze pojedynczego elementu listy (czyli komponent Profile)
+- funkcja do usuwania powinna zostac utworzona w App.tsx i przekazana do komponentu Profile List a nastepnie do Profile przez props
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Zad 7
 
-### `npm run build`
+Utworz komponent counter automatyczny który podnosi liczbe o 1 co 1 sekunde
+należy uzyc setInterval z uwzględnieniem funkcji czyszczącej clearInterval(intervalID)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Zad 8
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Utworz komponent Timer który posiada 2 przyciski start i stop oraz posiada useEffect Do czyszczenia oraz odpalenia timera po pojawieniu się zegarka na stronie,
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- dodatkowo posiada stan isRunning -> gdzie przycisk start jest zablokowany gdy timer jest uruchomiony
+- przycisk stop jest zablokowany gdy timer nie jest uruchomiony
+- tworzymy timer co sekundę bez podzialu na sekundy/minuty etc
 
-### `npm run eject`
+## Zad 9
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Stworz custom hook dla komponentu ProfileForm oraz CounterEffect który wydziela całą logike z komponentu (zostaje tylko return)
