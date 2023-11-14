@@ -8,6 +8,7 @@ import { ToDo } from "./components/ToDo/ToDo";
 import { Counter } from "./components/Counter/Counter";
 import { Profile } from "./components/Profile";
 import { ProfileList, ProfileType } from "./components/ProfileList";
+import { ProfileForm } from "./components/ProfileForm";
 
 // eventy w js:
 // click, change, submit
@@ -85,8 +86,13 @@ const App = () => {
     setProfileList((prev) => prev.filter((profile) => profile.id !== id));
   };
 
+  type ObjectType = {
+    text?: string;
+  };
+
   return (
     <div className="App">
+      <ProfileForm addItem={addProfile} />
       <h2>Zadanie ProfileList</h2>
       <ProfileList list={profileList} addItem={addProfile} />
       <button onClick={() => addProfile(profile)}>Add profile</button>
