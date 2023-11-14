@@ -10,6 +10,7 @@ import { Profile } from "./components/Profile";
 import { ProfileList, ProfileType } from "./components/ProfileList";
 import { ProfileForm } from "./components/ProfileForm";
 import { EffectComponent } from "./components/EffectComponent";
+import { CounterEffect } from "./components/CounterEffect";
 
 // eventy w js:
 // click, change, submit
@@ -93,7 +94,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <EffectComponent />
+      <CounterEffect />
+      {/* <EffectComponent /> */}
       {/* <ProfileForm addItem={addProfile} />
       <h2>Zadanie ProfileList</h2>
       <ProfileList list={profileList} addItem={addProfile} />
