@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 export const EffectComponent = () => {
   const [count, setCount] = useState(0);
   const [value, setValue] = useState(0);
+
+  //// INFO OGOLNE O USEEFFECT
+  // MOZEMY UZYWAC TYLE USEEFFECT ILE POTRZEBUJEMY
+
   // zamontowanie - metoda componentWillMount
   // posiada pusta tablice zaleznosci jako 2 parametr
   // moze sluzyc do pobierania danych
@@ -13,6 +17,9 @@ export const EffectComponent = () => {
     }, 500);
 
     //odmontowanie - componentWillUnmount
+    // return ktory odpowiada za odmontowanie komponentu uzywamy w razie potrzeby
+    // w kazdym useEffect
+    // nie ma znaczenia czy useEffect ma tablice zaleznosci czy tez nie
     return () => {
       console.log("komponent zostal odmontowany!");
       clearInterval(intervalID);
