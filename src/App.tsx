@@ -11,6 +11,7 @@ import { ProfileList, ProfileType } from "./components/ProfileList";
 import { ProfileForm } from "./components/ProfileForm";
 import { EffectComponent } from "./components/EffectComponent";
 import { CounterEffect } from "./components/CounterEffect";
+import { useCounterEffect } from "./components/CounterEffect/hooks/useCounterEffect";
 
 // eventy w js:
 // click, change, submit
