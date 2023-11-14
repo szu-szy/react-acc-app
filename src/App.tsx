@@ -9,6 +9,7 @@ import { Counter } from "./components/Counter/Counter";
 import { Profile } from "./components/Profile";
 import { ProfileList, ProfileType } from "./components/ProfileList";
 import { ProfileForm } from "./components/ProfileForm";
+import { EffectComponent } from "./components/EffectComponent";
 
 // eventy w js:
 // click, change, submit
@@ -92,11 +93,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <ProfileForm addItem={addProfile} />
+      <EffectComponent />
+      {/* <ProfileForm addItem={addProfile} />
       <h2>Zadanie ProfileList</h2>
       <ProfileList list={profileList} addItem={addProfile} />
       <button onClick={() => addProfile(profile)}>Add profile</button>
-      <button onClick={() => removeItem("profile-list-1")}>Usun element</button>
+      <button onClick={() => removeItem("profile-list-1")}>Usun element</button> */}
     </div>
   );
 };
