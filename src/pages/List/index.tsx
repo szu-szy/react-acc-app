@@ -1,22 +1,12 @@
-import { useEffect } from "react";
-import { Profile } from "../Profile";
-import { Link, useNavigate } from "react-router-dom";
-
-export type ProfileType = {
-  id: string;
-  username: string;
-  tag: string;
-  location: string;
-  phone: string;
-  stats: string;
-  avatarUrl?: string;
-};
+import { Link } from "react-router-dom";
+import { Profile } from "../../components/Profile";
+import { ProfileType } from "../../components/ProfileList";
 
 type Props = {
   list: ProfileType[]; // mozna zapisac rowniez Array<ProfileType>
 };
 
-export const ProfileList = ({ list }: Props) => {
+export const List = ({ list }: Props) => {
   return (
     <>
       <ul>

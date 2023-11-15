@@ -3,7 +3,6 @@ import "./App.scss";
 import { Child } from "./components/Child/Child";
 import { Parent } from "./components/Parent/Parent";
 import { Toggler } from "./components/Toggler/Toggler";
-import { List } from "./components/List/List";
 import { ToDo } from "./components/ToDo/ToDo";
 import { Counter } from "./components/Counter/Counter";
 import { Profile } from "./components/Profile";
@@ -12,6 +11,15 @@ import { ProfileForm } from "./components/ProfileForm";
 import { EffectComponent } from "./components/EffectComponent";
 import { CounterEffect } from "./components/CounterEffect";
 import { useCounterEffect } from "./components/CounterEffect/hooks/useCounterEffect";
+import { ClassComponent } from "./components/ClassComponent";
+import { useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "./components/Redux/hooks";
+import { addItem } from "./components/Redux/counterSlice";
+import { Route, Routes } from "react-router-dom";
+import { NotFound } from "./pages/NotFound";
+import { Header } from "./components/Header";
+import { ListItem } from "./pages/ListItem";
+import { List } from "./pages/List";
 
 // eventy w js:
 // click, change, submit
@@ -26,7 +34,7 @@ import { useCounterEffect } from "./components/CounterEffect/hooks/useCounterEff
 // operatory logiczne
 // && , ||
 
-const PROFILE_LIST = [
+export const PROFILE_LIST = [
   {
     id: "profile-list-1",
     username: "Andrzej",
@@ -66,6 +74,17 @@ const PROFILE_LIST = [
 ];
 
 const App = () => {
+  const list = useAppSelector((state) => state.appReducer.list);
+  const dispatch = useAppDispatch();
+
+  const handleAddItem = () =>
+    dispatch(
+      addItem({
+        id: "a",
+        text: "123",
+      })
+    );
+
   const [profileList, setProfileList] = useState<ProfileType[]>(PROFILE_LIST);
 
   // obiekty do zadania z Profile
@@ -89,19 +108,18 @@ const App = () => {
     setProfileList((prev) => prev.filter((profile) => profile.id !== id));
   };
 
-  type ObjectType = {
-    text?: string;
-  };
-
+  // brak w trasach url localhost:3000
   return (
     <div className="App">
-      <CounterEffect />
-      {/* <EffectComponent /> */}
-      {/* <ProfileForm addItem={addProfile} />
-      <h2>Zadanie ProfileList</h2>
-      <ProfileList list={profileList} addItem={addProfile} />
-      <button onClick={() => addProfile(profile)}>Add profile</button>
-      <button onClick={() => removeItem("profile-list-1")}>Usun element</button> */}
+      <Header />
+      <Routes>
+        <Route path="/" element={<ProfileList list={profileList} />} />
+        <Route path="/home" element={<ProfileList list={profileList} />} />
+        <Route path="/list" element={<List list={profileList} />} />
+        <Route path="/list/:id" element={<ListItem />} />
+        <Route path="/form" element={<ProfileForm addItem={addProfile} />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 };

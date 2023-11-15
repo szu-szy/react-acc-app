@@ -33,12 +33,13 @@ export const useCounterEffect = (): Data => {
 
   useEffect(() => {
     // zamontowanie komponentu
-    // console.log("mount component");
+    console.log("mount component");
     // start();
 
     //odmontowanie komponentu z ekranu
     return () => {
       stop();
+      console.log("unmount");
     };
   }, []);
 
