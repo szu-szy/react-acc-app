@@ -5,9 +5,7 @@ import { Parent } from "./components/Parent/Parent";
 import { Toggler } from "./components/Toggler/Toggler";
 import { ToDo } from "./components/ToDo/ToDo";
 import { Counter } from "./components/Counter/Counter";
-import { Profile } from "./components/Profile";
 import { ProfileList, ProfileType } from "./components/ProfileList";
-import { ProfileForm } from "./components/ProfileForm";
 import { EffectComponent } from "./components/EffectComponent";
 import { CounterEffect } from "./components/CounterEffect";
 import { useCounterEffect } from "./components/CounterEffect/hooks/useCounterEffect";
@@ -15,11 +13,14 @@ import { ClassComponent } from "./components/ClassComponent";
 import { useSelector } from "react-redux";
 import { useAppDispatch, useAppSelector } from "./components/Redux/hooks";
 import { addItem } from "./components/Redux/counterSlice";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { Header } from "./components/Header";
 import { ListItem } from "./pages/ListItem";
 import { List } from "./pages/List";
+import { Home } from "./pages/Home";
+import { ProfilePage } from "./pages/Profile";
+import { ProfileForm } from "./pages/ProfileForm";
 
 // eventy w js:
 // click, change, submit
@@ -74,18 +75,8 @@ export const PROFILE_LIST = [
 ];
 
 const App = () => {
-  const list = useAppSelector((state) => state.appReducer.list);
-  const dispatch = useAppDispatch();
-
-  const handleAddItem = () =>
-    dispatch(
-      addItem({
-        id: "a",
-        text: "123",
-      })
-    );
-
   const [profileList, setProfileList] = useState<ProfileType[]>(PROFILE_LIST);
+  const navigate = useNavigate();
 
   // obiekty do zadania z Profile
   const profile = {
@@ -102,22 +93,48 @@ const App = () => {
 
   const addProfile = (item: ProfileType) => {
     setProfileList((prev) => [...prev, item]);
+    navigate("/");
   };
 
   const removeItem = (id: string) => {
     setProfileList((prev) => prev.filter((profile) => profile.id !== id));
   };
 
+  // redux
+
+  // const list = useAppSelector((state) => state.appReducer.list);
+  // const dispatch = useAppDispatch();
+
+  // const handleAddItem = () =>
+  //   dispatch(
+  //     addItem({
+  //       id: "a",
+  //       text: "123",
+  //     })
+  //   );
+
   // brak w trasach url localhost:3000
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<ProfileList list={profileList} />} />
+        {/* Przyklady + zadanie 1 */}
+        {/* <Route path="/" element={<ProfileList list={profileList} />} />
         <Route path="/home" element={<ProfileList list={profileList} />} />
         <Route path="/list" element={<List list={profileList} />} />
         <Route path="/list/:id" element={<ListItem />} />
-        <Route path="/form" element={<ProfileForm addItem={addProfile} />} />
+        <Route path="/form" element={<ProfileForm addItem={addProfile} />} /> */}
+        {/* Zadanie 2 */}
+        <Route path="/" element={<Home list={profileList} />} />
+        {/* <Route path="/profiles" element={<ProfileList/>}/> */}
+        <Route
+          path="/profiles/:profileID"
+          element={<ProfilePage list={profileList} />}
+        />
+        <Route
+          path="/profiles/new"
+          element={<ProfileForm addItem={addProfile} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

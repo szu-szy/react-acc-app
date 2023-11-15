@@ -2,19 +2,49 @@ import React from "react";
 
 type CounterState = {
   count: number;
+  value: string;
 };
 
-// zapis <{}, CounterState> oznacza <PropsType, StateType>
-export class ClassComponent extends React.Component<{}, CounterState> {
+type Props = {
+  text: string;
+};
+
+// zapis <Props, CounterState> oznacza <PropsType, StateType>
+// komponent klasowy powinien dziedziczyc po React.Component
+// aby miec dostep do props i state
+export class ClassComponent extends React.Component<Props, CounterState> {
+  // I opcja utworzenia stanu komponentu
+  // state = {
+  //   count: 0,
+  // };
+
+  // jezeli nie zapiszemy jawnie wywolania konstruktora - wywola sie domyslnie pusty
   constructor(props: any) {
     super(props);
+    // II opcja utworzenia stanu komponentu
     this.state = {
       count: 0,
+      value: "tekst",
     };
-    console.log("constructor");
+    console.log("constructor", this.props.text);
+    // dotyczy zapisu przy uzyciu function -> increment(){}
+    // this.increment = this.increment.bind(this);
   }
 
+  // jaka jest roznica miedzy funkcja strzalkowa () => {}, a function (){}
+
+  // increment() {
+  //   this.setState((prevState) => ({
+  //     count: prevState.count + 1,
+  //   }));
+  // }
+
   increment = () => {
+    // aktualizowanie stanu
+    // zapis ponizej nie przeladuje nam komponentu - komponent nie wie, ze stan zostal zmieniony
+    // this.state.cout = 1
+
+    // sluzy do aktualizacji stanu - powoduje on rerender komponentu
     this.setState((prevState) => ({
       count: prevState.count + 1,
     }));
@@ -37,6 +67,7 @@ export class ClassComponent extends React.Component<{}, CounterState> {
     console.log("componentWillUnmount - Komponent zostanie usunięty.");
   }
 
+  // kazdy komponent klasowy musi miec w sobie uzycie metody render()
   render() {
     return (
       <div>
