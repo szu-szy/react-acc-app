@@ -11,8 +11,8 @@ import { CounterEffect } from "./components/CounterEffect";
 import { useCounterEffect } from "./components/CounterEffect/hooks/useCounterEffect";
 import { ClassComponent } from "./components/ClassComponent";
 import { useSelector } from "react-redux";
-import { useAppDispatch, useAppSelector } from "./components/Redux/hooks";
-import { addItem } from "./components/Redux/counterSlice";
+import { useAppDispatch, useAppSelector } from "./Redux/hooks";
+import { addItem } from "./Redux/counterSlice";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { Header } from "./components/Header";
@@ -102,21 +102,27 @@ const App = () => {
 
   // redux
 
-  // const list = useAppSelector((state) => state.appReducer.list);
-  // const dispatch = useAppDispatch();
+  const list = useAppSelector((state) => state.appReducer.list);
+  const dispatch = useAppDispatch();
 
-  // const handleAddItem = () =>
-  //   dispatch(
-  //     addItem({
-  //       id: "a",
-  //       text: "123",
-  //     })
-  //   );
+  const handleAddItem = () =>
+    dispatch(
+      addItem({
+        id: "a",
+        text: "123",
+      })
+    );
 
-  // brak w trasach url localhost:3000
   return (
     <div className="App">
       <Header />
+      <h2>Lista ze store</h2>
+      <ul>
+        {list.map((item) => (
+          <li key={item.id}>{item.text}</li>
+        ))}
+      </ul>
+      <button onClick={handleAddItem}>Dodaj</button>
       <Routes>
         {/* Przyklady + zadanie 1 */}
         {/* <Route path="/" element={<ProfileList list={profileList} />} />

@@ -52,6 +52,7 @@ export class ClassComponent extends React.Component<Props, CounterState> {
 
   // Metoda wywoływana po tym, jak komponent został dodany do drzewa DOM
   componentDidMount() {
+    // mozemy pobrac dane
     console.log("component mount");
   }
 
@@ -64,6 +65,7 @@ export class ClassComponent extends React.Component<Props, CounterState> {
 
   // Metoda wywoływana przed usunięciem komponentu z drzewa DOM
   componentWillUnmount() {
+    // clearInterval()
     console.log("componentWillUnmount - Komponent zostanie usunięty.");
   }
 
